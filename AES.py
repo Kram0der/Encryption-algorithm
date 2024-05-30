@@ -229,26 +229,26 @@ def xEtime(num):
     return x8time(num) ^ x4time(num) ^ double(num)
 
 
-def CBC_single(file, iv, key):
-    s = AES(file, key)
-    res = s.decrypt()
-    for i in range(16):
-        res[i] ^= iv[i]
-    return res
+# def CBC_single(file, iv, key):
+#     s = AES(file, key)
+#     res = s.decrypt()
+#     for i in range(16):
+#         res[i] ^= iv[i]
+#     return res
 
 
-if __name__ == '__main__':
-    # 密文
-    file = base64.b64decode(b"HyKsaPpqT4l436tHiSEXtIlLgVV4GE7mGc2WoI0KlP2YhKFco7OPcJYtS58BFwDq")
-    # 密钥
-    key = [12, 32, 13, 14, 23, 108, 31, 108, 44, 121, 42, 121, 42, 113, 41, 124]
-    # 初始化向量
-    iv = [12, 32, 13, 14, 23, 108, 31, 108, 44, 121, 42, 121, 42, 113, 41, 124]
-    res = ""
+# if __name__ == '__main__':
+#     # 密文
+#     file = base64.b64decode(b"HyKsaPpqT4l436tHiSEXtIlLgVV4GE7mGc2WoI0KlP2YhKFco7OPcJYtS58BFwDq")
+#     # 密钥
+#     key = [12, 32, 13, 14, 23, 108, 31, 108, 44, 121, 42, 121, 42, 113, 41, 124]
+#     # 初始化向量
+#     iv = [12, 32, 13, 14, 23, 108, 31, 108, 44, 121, 42, 121, 42, 113, 41, 124]
+#     res = ""
 
-    tmp = CBC_single(file[0:16], iv, key)
-    res = ''.join(chr(tmp[i]) for i in range(16)) + res
-    for i in range(1, 3):
-        tmp = CBC_single(file[i << 4:i + 1 << 4], [x for x in file[i - 1 << 4:i << 4]], key)
-        res = ''.join(chr(tmp[i]) for i in range(16)) + res
-    print(res)
+#     tmp = CBC_single(file[0:16], iv, key)
+#     res = ''.join(chr(tmp[i]) for i in range(16)) + res
+#     for i in range(1, 3):
+#         tmp = CBC_single(file[i << 4:i + 1 << 4], [x for x in file[i - 1 << 4:i << 4]], key)
+#         res = ''.join(chr(tmp[i]) for i in range(16)) + res
+#     print(res)
